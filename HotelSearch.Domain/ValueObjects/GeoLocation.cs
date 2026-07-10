@@ -1,10 +1,13 @@
-﻿namespace HotelSearch.Domain.ValueObjects
+﻿using System.Text.Json.Serialization;
+
+namespace HotelSearch.Domain.ValueObjects
 {
     public readonly struct GeoLocation
     {
         public double Latitude { get; }
         public double Longitude { get; }
 
+        [JsonConstructor]
         public GeoLocation(double latitude, double longitude)
         {
             if (latitude < -90 || latitude > 90)
