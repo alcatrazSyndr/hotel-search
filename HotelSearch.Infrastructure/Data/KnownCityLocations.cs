@@ -19,7 +19,6 @@ namespace HotelSearch.Infrastructure.Data
         public static GeoLocation? GetCityLocation(string cityName)
         {
             var normalizedName = TextNormalizer.RemoveDiacritics(cityName);
-
             var found = _cityLocationsDictionary.TryGetValue(normalizedName, out var location);
 
             if (!found)
@@ -28,6 +27,11 @@ namespace HotelSearch.Infrastructure.Data
             }
 
             return location;
+        }
+
+        public static IEnumerable<string> GetAllCityNames()
+        {
+            return _cityLocationsDictionary.Keys;
         }
     }
 }
