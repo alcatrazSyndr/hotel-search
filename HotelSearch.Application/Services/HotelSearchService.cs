@@ -5,6 +5,9 @@ namespace HotelSearch.Application.Services
 {
     public class HotelSearchService : IHotelSearchService
     {
+        private const double PriceWeight = 1.0;
+        private const double DistanceWeight = 3.0;
+
         private readonly IHotelRepository _hotelRepository;
         private readonly IHotelSearchPromptParser _promptParser;
 
@@ -87,13 +90,15 @@ namespace HotelSearch.Application.Services
 
                 if (maxPrice > minPrice)
                 {
-                    score += (double)((price - minPrice) / (maxPrice - minPrice));
+                    var normalizedPrice = (double)((price - minPrice) / (maxPrice - minPrice));
+                    score += normalizedPrice * PriceWeight;
                 }
 
                 if (t.Distance.HasValue && minDistance.HasValue && maxDistance.HasValue && maxDistance > minDistance)
                 {
                     var distance = t.Distance.Value;
-                    score += (distance - minDistance.Value) / (maxDistance.Value - minDistance.Value);
+                    var normalizedDistance = (distance - minDistance.Value) / (maxDistance.Value - minDistance.Value);
+                    score += normalizedDistance * DistanceWeight;
                 }
 
                 hotelsWithScoreAndDistance[i] = (t.Hotel, score, t.Distance);
