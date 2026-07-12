@@ -18,4 +18,6 @@ AI assistance (Claude) was used throughout the development of this project. This
 
 **Generating reference data.** The list of known city names and coordinates used for location matching was generated with AI assistance to save time, rather than manually looking up coordinates for each city.
 
+**Learning to write unit tests.** I had never written unit tests before this project. I used AI assistance to learn the Arrange-Act-Assert pattern and xUnit basics (`[Fact]`, `Assert.Equal`, `Assert.InRange`, `Record.Exception`), and wrote a small set of tests covering `GeoLocation`'s distance calculation and coordinate validation.
+
 **Documentation.** The README and the AI usage documentation were drafted with AI assistance based on the actual implementation and decisions made throughout the project, then reviewed and edited by me.

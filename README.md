@@ -75,6 +75,10 @@ Distance is weighted more heavily than price, so nearby hotels rank above cheape
 - **No authentication/authorization** — out of scope for this PoC.
 - A client with access to native geolocation (e.g. a browser or mobile app) could be supported by accepting latitude/longitude directly as optional parameters, bypassing prompt-based location extraction entirely.
 
+## Testing
+
+A small set of unit tests (xUnit) cover `GeoLocation` — distance calculation and coordinate validation. Run them via Visual Studio's Test Explorer, or `dotnet test` from the solution root.
+
 ## AI Usage
 
 See [AI_USAGE.md](./AI_USAGE.md) for a detailed account of how AI tools were used during development.
