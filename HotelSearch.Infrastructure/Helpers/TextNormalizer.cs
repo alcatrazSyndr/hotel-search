@@ -5,7 +5,7 @@ namespace HotelSearch.Infrastructure.Helpers
 {
     public static class TextNormalizer
     {
-        // Strips diacritics from text (e.g. "Đakovo" -> "Dakovo") for more resilient string matching
+        // Strips diacritics from text ("Đakovo" -> "Dakovo") for more resilient string matching
         public static string RemoveDiacritics(string text)
         {
             var decomposed = text.Normalize(NormalizationForm.FormD);
