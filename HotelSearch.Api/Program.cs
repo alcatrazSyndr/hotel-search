@@ -1,3 +1,4 @@
+using HotelSearch.Api.Middleware;
 using HotelSearch.Application.Interfaces;
 using HotelSearch.Application.Services;
 using HotelSearch.Infrastructure.Parsers;
@@ -22,6 +23,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.UseHttpsRedirection();
 
