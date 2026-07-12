@@ -1,4 +1,5 @@
-﻿using HotelSearch.Application.Interfaces;
+﻿using HotelSearch.Application.DTOs;
+using HotelSearch.Application.Interfaces;
 using HotelSearch.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,10 +10,12 @@ namespace HotelSearch.Api.Controllers
     public class HotelController : ControllerBase
     {
         private readonly IHotelRepository _hotelRepository;
+        private readonly IHotelSearchService _hotelSearchService;
 
-        public HotelController(IHotelRepository hotelRepository)
+        public HotelController(IHotelRepository hotelRepository, IHotelSearchService hotelSearchService)
         {
             _hotelRepository = hotelRepository;
+            _hotelSearchService = hotelSearchService;
         }
 
         [HttpGet]
@@ -69,6 +72,14 @@ namespace HotelSearch.Api.Controllers
             }
 
             return NoContent();
+        }
+
+        [HttpGet("search")]
+        public async Task<ActionResult<PagedResultDTO<HotelSearchResultDTO>>> Search([FromQuery] string search = "", [FromQuery] int page = 1, [FromQuery] int pageSize = 10)
+        {
+            var result = await _hotelSearchService.SearchAsync(search, page, pageSize);
+
+            return Ok(result);
         }
     }
 }
