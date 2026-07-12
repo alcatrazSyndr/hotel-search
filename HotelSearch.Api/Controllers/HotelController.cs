@@ -77,6 +77,16 @@ namespace HotelSearch.Api.Controllers
         [HttpGet("search")]
         public async Task<ActionResult<PagedResultDTO<HotelSearchResultDTO>>> Search([FromQuery] string search = "", [FromQuery] int page = 1, [FromQuery] int pageSize = 10)
         {
+            if (page < 1)
+            {
+                return BadRequest("Page must be 1 or greater.");
+            }
+
+            if (pageSize < 1 || pageSize > 100)
+            {
+                return BadRequest("Page size must be between 1 and 100.");
+            }
+
             var result = await _hotelSearchService.SearchAsync(search, page, pageSize);
 
             return Ok(result);
