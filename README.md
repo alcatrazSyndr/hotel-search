@@ -50,11 +50,11 @@ This separation means the in-memory repository and regex parser can each be swap
 - `DELETE /api/Hotel/{id}` — delete a hotel
 
 ### Search
-- `GET /api/Hotel/search?prompt={text}&page={n}&pageSize={n}`
+- `GET /api/Hotel/search?search={text}&page={n}&pageSize={n}`
 
-Example: `GET /api/Hotel/search?prompt=cheap hotels near Zagreb under 100&page=1&pageSize=10`
+Example: `GET /api/Hotel/search?search=cheap hotels near Zagreb under 100&page=1&pageSize=10`
 
-The prompt can mention a known city and/or a budget (e.g. "under 100", "budget 150", "between 50 and 100", "over 75"). Both are optional — an empty prompt returns all hotels. Paging is supported (`page`, `pageSize`, capped at 100 per page).
+The search prompt can mention a known city and/or a budget (e.g. "under 100", "budget 150", "between 50 and 100", "over 75"). Both are optional — an empty prompt returns all hotels. Paging is supported (`page`, `pageSize`, capped at 100 per page).
 
 ## How search ranking works
 
